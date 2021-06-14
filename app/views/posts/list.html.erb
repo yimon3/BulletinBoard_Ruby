@@ -1,0 +1,40 @@
+<div style="float:right">
+  <label>Keyword :</label>
+  <input type="text">
+  <a href="#" class="btn btn-primary" tabindex="-1" role="button" >Search</a>
+  <%= link_to 'Create', posts_new_path, class:"btn btn-info" %>
+  <a href="#" class="btn btn-warning" tabindex="-1" role="button" >Upload</a>
+  <a href="#" class="btn btn-success" tabindex="-1" role="button">Download</a>
+  </div>
+<br/><br>
+<table class="table table-hover table-bordered">
+  <tr class="table-info">
+  <th>Post Title</th>
+  <th>Post Description</th>
+  <th>Posted User</th>
+  <th>Posted Date</th>
+  <th>Operation</th>
+  </tr>
+  <% @posts.each do |post| %>
+  <tr>
+  <td><%= post.title %></td>
+  <td><%= post.description %></td>
+  <td><%= post.create_user_id %></td>
+  <td><%= post.created_at %></td>
+  <td>
+  <a href="#" class="btn btn-success" tabindex="-1" role="button" >Edit</a>
+  <a href="#" class="btn btn-danger" tabindex="-1" role="button" >Delete</a>
+  </td>
+  </tr>
+  <% end %>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="justify-content-end pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+

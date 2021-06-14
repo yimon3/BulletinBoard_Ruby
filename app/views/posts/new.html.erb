@@ -1,0 +1,18 @@
+<div class="container">
+<h3>Create Post</h3>
+<%= form_tag :action => 'create' do %>
+<div class="form-group">
+<label for = "post_title">Title:</label><br>
+<%= text_field 'post', 'title' , class:'form-control' %>
+</div>
+<div class="form-group">
+<label for = "post_description">Description:</label><br/>
+<%= text_area 'post', 'description' , class:'form-control' %>
+</div>
+<br>
+<%= submit_tag "Create", class:'btn btn-primary' %>
+<%= submit_tag "Clear", class:'btn btn-secondary' %>
+<% end -%><br>
+<%= link_to 'Back', {:action => 'list'} %>
+</div>
+
