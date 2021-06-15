@@ -12,33 +12,40 @@
 
 ActiveRecord::Schema.define(version: 2021_06_11_072425) do
 
-  create_table "posts", charset: "utf8mb4", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.integer "status"
-    t.integer "create_user_id"
-    t.integer "updated_user_id"
+  create_table "posts", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description", null: false
+    t.integer "status", default: 1, null: false
+    t.integer "create_user_id", null: false
+    t.integer "updated_user_id", null: false
     t.integer "deleted_user_id"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["create_user_id"], name: "create_user_id"
+    t.index ["title"], name: "title", unique: true
+    t.index ["updated_user_id"], name: "updated_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.text "password"
-    t.string "profile"
-    t.string "type"
+  create_table "users", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.text "password", null: false
+    t.string "profile", null: false
+    t.string "user_type", limit: 1, default: "1", null: false
     t.string "phone"
     t.string "address"
     t.date "dob"
-    t.integer "create_user_id"
-    t.integer "updated_user_id"
+    t.integer "create_user_id", null: false
+    t.integer "updated_user_id", null: false
     t.integer "deleted_user_id"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "email", unique: true
+    t.index ["name"], name: "name", unique: true
   end
 
+  add_foreign_key "posts", "users", column: "create_user_id", name: "posts_ibfk_1"
+  add_foreign_key "posts", "users", column: "updated_user_id", name: "posts_ibfk_2"
 end
