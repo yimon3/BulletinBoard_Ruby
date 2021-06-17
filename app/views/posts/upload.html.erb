@@ -1,0 +1,28 @@
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Delete Confirm</h5>
+      </div>
+      <div class="modal-body">
+        <h6>Are you sure to delete post?</h6>
+        <label>ID........................</label>
+        <%= post.id %><br>
+         <label>Title....................</label>
+        <%= post.title %><br>
+         <label>Description.....</label>
+        <%= post.description %><br>
+         <label>Status................</label>
+         <% if post.status == 1%>
+        <%= post.status= "Active" %>
+        <% elsif post.status == 0 %>
+        <%= post.status= "Inactive"%>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= link_to 'Delete', {:action => 'delete', :id => post.id}, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+  </div>

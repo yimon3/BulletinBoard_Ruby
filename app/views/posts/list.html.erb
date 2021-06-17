@@ -1,9 +1,10 @@
+<h3>Post List</h3>
 <div style="float:right">
   <label>Keyword :</label>
   <input type="text">
   <a href="#" class="btn btn-primary" tabindex="-1" role="button" >Search</a>
   <%= link_to 'Create', posts_new_path, class:"btn btn-info" %>
-  <a href="#" class="btn btn-warning" tabindex="-1" role="button" >Upload</a>
+  <%= link_to 'Upload', posts_upload_path, class:"btn btn-warning"%>
   <a href="#" class="btn btn-success" tabindex="-1" role="button">Download</a>
   </div>
 <br/><br>
@@ -17,15 +18,47 @@
   </tr>
   <% @posts.each do |post| %>
   <tr>
-  <td><%= post.title %></td>
+  <td><%= link_to post.title, {:action => "show", :id => post.id} %></td>
   <td><%= post.description %></td>
   <td><%= post.create_user_id %></td>
   <td><%= post.created_at %></td>
   <td>
-  <a href="#" class="btn btn-success" tabindex="-1" role="button" >Edit</a>
-  <a href="#" class="btn btn-danger" tabindex="-1" role="button" >Delete</a>
+  <%= link_to 'Edit', {:action => "edit", :id => post.id}, class:"btn btn-success" %>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Delete
+</button>
   </td>
   </tr>
+  <% @posts.each do |post| %>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Delete Confirm</h5>
+      </div>
+      <div class="modal-body">
+        <h6>Are you sure to delete post?</h6>
+        <label>ID........................</label>
+        <%= post.id %><br>
+         <label>Title....................</label>
+        <%= post.title %><br>
+         <label>Description.....</label>
+        <%= post.description %><br>
+         <label>Status................</label>
+         <% if post.status == 1%>
+        <%= post.status= "Active" %>
+        <% elsif post.status == 0 %>
+        <%= post.status= "Inactive"%>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= link_to 'Delete', {:action => 'delete', :id => post.id}, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
   <% end %>
 </table>
 <nav aria-label="Page navigation example">
@@ -37,4 +70,5 @@
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
 </nav>
+
 

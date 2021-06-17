@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg" style="background-color:#00dbdb;">
   <div class="container-fluid">
-  <%= link_to 'BulletinBoard', root_path, class:"navbar-brand" %>
+  <%= link_to 'BulletinBoard', posts_list_path, class:"navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-            <%= link_to 'Users', users_index_path, class:"nav-link active" %>
+            <%= link_to 'Users', users_list_path, class:"nav-link active" %>
         </li>
         <li class="nav-item">
         <%= link_to 'Posts', posts_list_path, class:"nav-link" %>
@@ -23,7 +23,11 @@
       </a>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
         <li><a class="dropdown-item" href="#">Profile</a></li>
+        <% if session[:user_id] != nil %>
+        <li> <%= link_to 'LogOut', auths_logout_path, class:"dropdown-item" %></li>
+        <% else %>
         <li> <%= link_to 'LogIn', auths_login_path, class:"dropdown-item" %></li>
+        <% end %>
       </ul>
     </li>
       </ul>
