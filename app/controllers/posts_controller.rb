@@ -1,17 +1,16 @@
 class PostsController < ApplicationController
-  skip_before_action :authorize
+  skip_before_action :authorize, only: [:create]
   def index
   end
 
   def new
-    @post = Post.new
+    @post = PostsService.newPost
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.create_user_id = session[:user_id]
-    @post.updated_user_id = session[:user_id]
-    if @post.save
+    id = session[:user_id]
+    isSavePost = PostsService.createPost(post_params, id)
+    if isSavePost
       redirect_to action: :list
     else
       render 'new'
@@ -19,22 +18,21 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = PostsService.showPost(params[:id])
   end
 
   def list
-    @posts = Post.all
+    @posts = PostsService.listAll
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = PostsService.editPost(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.updated_user_id = session[:user_id]
-    @post.updated_at = Time.now
-    if @post.update(post_params)
+    user_id = session[:user_id]
+    isUpdatePost = PostsService.updatePost(params[:id], post_params, user_id)
+    if isUpdatePost
       redirect_to posts_list_path
     else
       render 'edit'
@@ -42,8 +40,8 @@ class PostsController < ApplicationController
   end
 
   def delete
-    Post.find(params[:id]).destroy
-   redirect_to :action => 'list'
+    PostsService.deletePost(params[:id])
+    redirect_to :action => 'list'
   end
 
   def upload
