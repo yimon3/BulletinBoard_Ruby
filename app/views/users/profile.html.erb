@@ -1,0 +1,29 @@
+<h3>Profile</h3><br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="..." class="rounded float-start" alt="...">
+    </div>
+    <div class="col-sm-2">
+      <label for = "user_name">Name</label><br><br>
+      <label for = "user_type">Type</label><br><br>
+      <label for = "user_email">Email</label><br><br>
+      <label for = "user_phone">Phone</label><br><br>
+      <label for = "user_dob">Date of Birth</label><br><br>
+      <label for = "user_address">Address</label><br><br>
+      <%= link_to 'Edit Profile', {:action => "editProfile", :id => session[:user_id]}, class:"btn btn-primary" %>
+    </div>
+    <div class="col-sm-8">
+      <%= @user.name %><br><br>
+      <% if @user.user_type == '0' %>
+      <%= @user.user_type = 'Admin' %>
+      <% else %>
+      <%= @user.user_type = 'User' %>
+      <% end %><br><br>
+      <%= @user.email %><br><br>
+      <%= @user.phone %><br><br>
+      <%= @user.dob %><br><br>   
+      <%= @user.address %>
+    </div>
+  </div>
+</div>

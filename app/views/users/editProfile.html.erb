@@ -1,0 +1,23 @@
+<h3>Profile Edit</h3><br>
+<div class="container">
+<%= form_for @user, :url =>{:action => "update", :id => session[:user_id]} do %>
+ <label for = "user_name">Name:</label>
+ <%= text_field 'user', 'name' , class:'form-control' %>
+    <label for = "user_email">E-mail address:</label>
+    <%= text_field 'user', 'email' , class:'form-control' %>
+    <label for = "user_type">Type:</label>
+    <%= text_field 'user', 'user_type' , class:'form-control' %>
+    <label for = "user_phone">Phone:</label>
+    <%= text_field 'user', 'phone' , class:'form-control' %>
+    <label for = "user_dob">Date of Birth:</label>
+    <%= text_field 'user', 'dob' , class:'form-control' %>
+    <label for = "user_address">Address:</label>
+    <%= text_area 'user', 'address' , class:'form-control' %>
+   
+    <label for = "user_profile">New Profile:</label>
+    <%= text_area 'user', 'profile' , class:'form-control' %><br>
+    <%= submit_tag 'Edit', class:"btn btn-info" %>
+    <%= link_to 'Clear', posts_new_path, class:"btn btn-secondary" %>
+    <%= link_to 'Change Password' , auths_changePsw_path %>
+    <% end %>
+</div>

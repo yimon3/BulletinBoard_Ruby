@@ -4,10 +4,10 @@ class UsersRepository
             @user = User.new(user)
             if @user.user_type == 'Admin'
               @user.user_type= 0
-              assignUser
+              assignUser(id)
             elsif @user.user_type == 'User'
               @user.user_type= 1
-              assignUser
+              assignUser(id)
             end
               isSaveUser = @user.save
           end
@@ -24,9 +24,16 @@ class UsersRepository
             findUserById(id).destroy
           end
 
-          def assignUser
+          def assignUser(id)
             @user.create_user_id = id
             @user.updated_user_id = id
+          end
+
+          def updateProfile(id, user, user_id)
+            @user = findUserById(id) 
+            @user.updated_user_id = user_id
+            @user.updated_at = Time.now
+            @user.update(user)
           end
           
     end

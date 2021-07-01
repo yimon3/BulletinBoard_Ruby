@@ -1,26 +1,78 @@
-
 <h2>Register</h2>
-<%= form_tag :action => 'create' do %>
-    <label for = "user_name">Name:</label>
+<div class="container">
+<%= form_tag :action => 'confirm' do %>
+<div class="mb-3 row">
+    <label for = "user_name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
     <%= text_field 'user', 'name' , class:'form-control' %>
-    <label for = "user_email">E-mail address:</label>
+    </div>
+    </div>
+<div class="mb-3 row">
+    <label for = "user_email" class="col-sm-2 col-form-label">E-mail address</label>
+    <div class="col-sm-10">
     <%= text_area 'user', 'email' , class:'form-control' %>
-    <label for = "user_password">Password:</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_password" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
     <%= password_field 'user', 'password' , class:'form-control' %>
-    <label for = "user_password">Confirm Password:</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "user_password" class="col-sm-2 col-form-label">Confirm Password</label>
+    <div class="col-sm-10">
     <%= password_field 'user', 'password' , class:'form-control' %>
-    <label for = "user_type">Type:</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "user_type" class="col-sm-2 col-form-label">Type</label>
+    <div class="col-sm-10">
     <%= text_field 'user', 'user_type' , class:'form-control' %>
-    <label for = "user_phone">Phone:</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "user_phone" class="col-sm-2 col-form-label">Phone</label>
+    <div class="col-sm-10">
     <%= text_field 'user', 'phone' , class:'form-control' %>
-    <label for = "user_dob">Date of Birth:</label><br>
-    <%= text_field 'user', 'dob' , class:'form-control' %>
-    <label for = "user_address">Address:</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_dob" class="col-sm-2 col-form-label">Date of Birth</label>
+    <div class="col-sm-10">
+    <%= text_field 'user', 'dob' , class:'form-control datepicker'%>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_address" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
     <%= text_area 'user', 'address' , class:'form-control' %>
-    <label for = "user_profile">Profile:</label>
-    <%= text_field 'user', 'profile' , class:'form-control' %>
-    <br>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_profile" class="col-sm-2 col-form-label">Profile</label>
+    <div class="col-sm-10">
+    <%= file_field_tag :file, class:'form-control'%>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "blank" class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-10">
     <%= submit_tag "Register", class:'btn btn-primary' %>
     <%= submit_tag "Clear", class:'btn btn-secondary' %>
+    </div>
+    </div>
     <% end -%><br>
     </div>
+    </div>
+
+   <script type="text/javascript">
+    $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
+            });
+        });
+   </script>

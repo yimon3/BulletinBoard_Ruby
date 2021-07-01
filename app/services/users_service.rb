@@ -9,7 +9,19 @@ class UsersService
           end
         
           def deleteUser(id)
-            isDeletePost = ArticlesRepository.deleteUser(id)
+            isDeletePost = UsersRepository.deleteUser(id)
           end 
+
+          def editProfile(id)
+            @user = UsersRepository.findUserById(id)
+          end
+
+          def updateProfile(id, userId, user)
+            @user = UsersRepository.updateProfile(id, userId, user)
+          end
+
+          def showProfile(id)
+            @user = UsersRepository.findUserById(id)
+          end
     end
 end

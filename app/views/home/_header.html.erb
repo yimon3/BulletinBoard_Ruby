@@ -19,10 +19,10 @@
         </li>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Admin
+        <%= session[:user_name] %>
       </a>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li> <%= link_to 'Profile', users_showProfile_path, class:"dropdown-item" %></li>
         <% if session[:user_id] != nil %>
         <li> <%= link_to 'LogOut', auths_logout_path, class:"dropdown-item" %></li>
         <% else %>

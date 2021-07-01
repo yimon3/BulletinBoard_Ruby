@@ -1,11 +1,12 @@
 <h3>Post List</h3>
 <div style="float:right">
+<%= form_tag :action => 'search' do %>
   <label>Keyword :</label>
-  <input type="text">
-  <a href="#" class="btn btn-primary" tabindex="-1" role="button" >Search</a>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", class:'btn btn-primary' %>
   <%= link_to 'Create', posts_new_path, class:"btn btn-info" %>
   <%= link_to 'Upload', posts_upload_path, class:"btn btn-warning"%>
-  <a href="#" class="btn btn-success" tabindex="-1" role="button">Download</a>
+  <%= link_to 'Download', posts_export_path(format: "xlsx"), class:"btn btn-success"%>
   </div>
 <br/><br>
 <table class="table table-hover table-bordered">
@@ -21,10 +22,10 @@
   <td><%= link_to post.title, {:action => "show", :id => post.id} %></td>
   <td><%= post.description %></td>
   <td><%= post.create_user_id %></td>
-  <td><%= post.created_at %></td>
+  <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
   <td>
   <%= link_to 'Edit', {:action => "edit", :id => post.id}, class:"btn btn-success" %>
-  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="post.id" data-bs-target="#staticBackdrop">
   Delete
 </button>
   </td>
@@ -57,6 +58,7 @@
       </div>
     </div>
   </div>
+  <% end %>
   <% end %>
 </div>
   <% end %>

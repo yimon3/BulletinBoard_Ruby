@@ -1,0 +1,20 @@
+<h3>Change Password</h3><br>
+<p><%= notice %></p>
+<%= form_tag :action => 'updatePsw' do %>
+<div class="container">
+<div class="form-group">
+ <label>Current Password:</label>
+ <%= password_field_tag :password, params[:password], class:'form-control' %>
+</div>
+<div class="form-group">
+<label>New Password:</label>
+<%= password_field_tag :newPassword, params[:newPassword], class:'form-control' %>
+</div>
+<div class="form-group">
+<label>Confirm New Password:</label>
+<%= password_field_tag :confirmPassword, params[:confirmPassword], class:'form-control' %>
+</div>
+<br>
+<%= submit_tag 'Update Password', class:'btn btn-info' %>
+</div>
+<% end %>

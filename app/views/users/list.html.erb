@@ -1,31 +1,32 @@
 <h3>User List</h3>
+<%= form_tag :action => 'search' do %>
 <div class="row g-3" style="float:right">
   <div class="col-auto">
   <label class="col-form-label">Name:</label>
   </div>
   <div class="col-auto">
-  <%= text_field 'user', 'name' , class:'form-control' %>
+  <%= text_field_tag :search, params[:search] , class:'form-control' %>
   </div>
   <div class="col-auto">
   <label class="col-form-label">Email:</label>
   </div>
   <div class="col-auto">
-  <%= text_field 'user', 'email' , class:'form-control' %>
+  <%= text_field_tag :email, params[:search] , class:'form-control' %>
   </div>
   <div class="col-auto">
   <label class="col-form-label">From:</label>
   </div>
   <div class="col-auto">
-  <%= text_field 'user', 'created_at' , class:'form-control' %>
+  <%= text_field_tag :from_date, params[:search], class:'form-control' %>
   </div>
   <div class="col-auto">
   <label class="col-form-label">To:</label>
   </div>
   <div class="col-auto">
-  <%= text_field 'user', 'created_at' , class:'form-control' %>
+  <%= text_field_tag :to_date, params[:search] , class:'form-control' %>
   </div>
   <div class="col-auto">
-  <%= link_to 'Search', posts_new_path, class:"btn btn-info" %>
+  <%= submit_tag 'Search', class:"btn btn-info" %>
   </div>
 </div><br><br>
 <table class="table table-hover table-bordered">
@@ -48,15 +49,22 @@
   <td><%= user.name %></td>
   <td><%= user.email %></td>
   <td><%= session[:user_name] %></td>
-  <td><%= user.user_type %></td>
+  <td>
+  <% if user.user_type == '0' %>
+    <%= user.user_type = 'Admin' %>
+  <% else %>
+    <%= user.user_type = 'User' %>
+  <% end %>
+  </td>
   <td><%= user.phone %></td>
   <td><%= user.dob %></td>
   <td><%= user.address %></td>
-  <td><%= user.created_at %></td>
-  <td><%= user.updated_at %></td>
+  <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
+  <td><%= user.updated_at.strftime("%Y/%m/%d") %></td>
   <td>
    <%= link_to 'Delete', {:action => "delete", :id => user.id}, class:"btn btn-danger" %>
   </td>
   </tr>
   <% end %>
 </table>
+<% end %>

@@ -1,0 +1,27 @@
+<h3>Post Details</h3><br>
+<div class="container">
+<div class="row">
+<div class="col-sm-2">
+<label>Title</label><br><br>
+<label>Description</label><br><br>
+<label>Status</label><br><br>
+<label>Created Date</label><br><br>
+<label>Created User</label><br><br>
+<label>Updated Date</label><br><br>
+<label>Updated User</label><br>
+</div>
+<div class="col-sm-10">
+<%= @post.title %><br><br>
+<%= @post.description %><br><br>
+ <% if @post.status == '0' %>
+    <%= @post.status = 'Inactive' %>
+  <% else %>
+    <%= @post.status = 'Active' %>
+  <% end %><br><br>
+<%= @post.created_at.strftime("%Y/%m/%d") %><br><br>
+<%= @post.create_user_id %><br><br>
+<%= @post.updated_at.strftime("%Y/%m/%d") %><br><br>
+<%= @post.updated_user_id %>
+</div>
+</div><br>
+<%= link_to 'Back', {:action => 'list'} %>

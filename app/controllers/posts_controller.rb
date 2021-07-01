@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
   skip_before_action :authorize, only: [:create]
-  def index
-  end
 
   def new
     @post = PostsService.newPost
+  end
+  
+  def confirm
+    @post = Post.new(post_params)
+    render 'confirmPost'
   end
 
   def create
@@ -19,6 +22,7 @@ class PostsController < ApplicationController
 
   def show
     @post = PostsService.showPost(params[:id])
+    render 'showDetail'
   end
 
   def list
@@ -44,13 +48,36 @@ class PostsController < ApplicationController
     redirect_to :action => 'list'
   end
 
+  def profile
+  end
+
   def upload
   end
+  
+  def search
+    keyword = params[:search]
+    @posts = Post.where("title LIKE ?", "%#{keyword}%")
+      render 'list'
+  end
+
+  def import
+    Post.import(params[:file])
+    redirect_to :action => 'list'
+  end
+
+  def export
+    @posts =  Post.all
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
+end
 
   private
 
   def post_params
-    params.require(:post).permit( :title, :description)
+    params.require(:post).permit( :title, :description, :status)
   end
 
 end
+

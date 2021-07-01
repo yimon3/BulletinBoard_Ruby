@@ -1,0 +1,26 @@
+
+<h2>Register Confirm</h2>
+<%= form_for @user, :url =>{:action => "create"} do %>
+    <label for = "user_name">Name</label>
+    <%= text_field 'user', 'name' , class:'form-control' %>
+    <label for = "user_email">E-mail address</label>
+    <%= text_area 'user', 'email' , class:'form-control' %>
+    <label for = "user_password">Password</label>
+    <%= password_field 'user', 'password' , class:'form-control' %>
+    <label for = "user_password">Confirm Password</label>
+    <%= password_field 'user', 'password' , class:'form-control' %>
+    <label for = "user_type">Type</label>
+    <%= text_field 'user', 'user_type' , class:'form-control' %>
+    <label for = "user_phone">Phone</label>
+    <%= text_field 'user', 'phone' , class:'form-control' %>
+    <label for = "user_dob">Date of Birth</label><br>
+    <%= text_field 'user', 'dob' , class:'form-control' %>
+    <label for = "user_address">Address</label>
+    <%= text_area 'user', 'address' , class:'form-control' %>
+    <label for = "user_profile">Profile</label>
+    <%= text_field 'user', 'profile' , class:'form-control' %>
+    <br>
+    <%= submit_tag "Register", class:'btn btn-primary' %>
+    <%= submit_tag "Clear", class:'btn btn-secondary' %>
+    <% end -%><br>
+    </div>

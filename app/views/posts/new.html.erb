@@ -1,6 +1,6 @@
 <div class="container">
 <h3>Create Post</h3><br>
-<%= form_tag :action => 'create' do %>
+<%= form_for @post, :url =>{:action => "confirm"} do %>
 <div class="form-group">
 <label for = "post_title">Title:</label><br>
 <%= text_field 'post', 'title' , class:'form-control' %>
