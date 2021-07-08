@@ -20,12 +20,20 @@ class PostsService
             isSavePost = PostsRepository.createPost(post, id)
         end
 
+        def confirmPost(post)
+            @post = PostsRepository.confirmPost(post)
+        end
+
         def deletePost(id)
             isDeletePost = PostsRepository.deletePost(id)
         end
 
         def updatePost(id, post, user_id)
             isUpdatePost = PostsRepository.updatePost(id, post, user_id)
+        end
+
+        def searchPost(param)
+            PostsRepository.searchPost(param)
         end
 
     end

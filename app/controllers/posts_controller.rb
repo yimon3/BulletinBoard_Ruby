@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
   
   def confirm
-    @post = Post.new(post_params)
+    @post = PostsService.confirmPost(post_params)
     render 'confirmPost'
   end
 
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def list
-    @posts = PostsService.listAll
+    @posts = PostsService.listAll.paginate(page: params[:page], per_page:5)
   end
 
   def edit
@@ -55,8 +55,7 @@ class PostsController < ApplicationController
   end
   
   def search
-    keyword = params[:search]
-    @posts = Post.where("title LIKE ?", "%#{keyword}%")
+    @posts = PostsService.searchPost(params[:search]).paginate(page: params[:page], per_page:5)
       render 'list'
   end
 
@@ -66,10 +65,9 @@ class PostsController < ApplicationController
   end
 
   def export
-    @posts =  Post.all
     respond_to do |format|
       format.html
-      format.xlsx
+      format.xls {send_data Post.to_excel(col_sep: "\t") }
     end
 end
 

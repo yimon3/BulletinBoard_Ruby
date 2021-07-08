@@ -36,5 +36,29 @@ class UsersRepository
             @user.update(user)
           end
           
+          def searchUserByName(name)
+            to_send_back = name_matches(name).uniq
+            return nil unless to_send_back
+                to_send_back
+          end
+
+          def searchUserByEmail(email)
+            to_send_back = email_matches(email).uniq
+            return nil unless to_send_back
+                to_send_back
+          end
+    
+          def name_matches(name)
+            matches('name', name)
+          end
+
+          def email_matches(email)
+            matches('email', email)
+          end
+
+          def matches(field_name, param)
+            User.where("#{field_name} LIKE ?", "%#{param}")
+          end
+          
     end
 end

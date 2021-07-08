@@ -20,8 +20,7 @@ class AuthsController < ApplicationController
             session[:user_address] = @user.address
             redirect_to posts_list_path
         else
-            message = "Something went wrong! Please Check your email or password."
-            redirect_to request.referer, notice: message
+            redirect_to request.referer, notice: "Something went wrong! Please Check your email or password."
         end
     end
 
@@ -42,12 +41,10 @@ class AuthsController < ApplicationController
                 @user.save
                 redirect_to :action => 'list', :controller=> 'posts'
             else
-                message = "New password and confirm password must be same."
-                render 'changePsw', notice: message
+                render 'changePsw', notice: "New password and confirm password must be same."
             end
         else
-            message = "Please enter your old password."
-            render 'changePsw', notice: message
+            render 'changePsw', notice: "Please enter your old password."
         end
     end
 

@@ -23,5 +23,13 @@ class UsersService
           def showProfile(id)
             @user = UsersRepository.findUserById(id)
           end
+
+          def searchUserByName(name)
+            UsersRepository.searchUserByName(name)
+          end
+
+          def searchUserByEmail(email)
+            UsersRepository.searchUserByEmail(email)
+          end
     end
 end

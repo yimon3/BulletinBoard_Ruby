@@ -10,14 +10,19 @@
     <label for = "user_phone">Phone:</label>
     <%= text_field 'user', 'phone' , class:'form-control' %>
     <label for = "user_dob">Date of Birth:</label>
-    <%= text_field 'user', 'dob' , class:'form-control' %>
+    <%= text_field 'user', 'dob' , class:'form-control', type: "date",
+      data: {
+      controller: "flatpickr",
+      flatpickr_date_format: "Y-m-d",
+      flatpickr_min_date: Time.zone.now
+    }
+     %>
     <label for = "user_address">Address:</label>
     <%= text_area 'user', 'address' , class:'form-control' %>
-   
     <label for = "user_profile">New Profile:</label>
     <%= text_area 'user', 'profile' , class:'form-control' %><br>
     <%= submit_tag 'Edit', class:"btn btn-info" %>
-    <%= link_to 'Clear', posts_new_path, class:"btn btn-secondary" %>
+    <input type="reset" class="btn btn-secondary" name="Clear" value="Clear">
     <%= link_to 'Change Password' , auths_changePsw_path %>
     <% end %>
 </div>

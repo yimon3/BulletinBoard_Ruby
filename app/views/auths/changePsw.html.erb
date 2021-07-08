@@ -1,3 +1,8 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
 <h3>Change Password</h3><br>
 <p><%= notice %></p>
 <%= form_tag :action => 'updatePsw' do %>

@@ -1,26 +1,74 @@
 
 <h2>Register Confirm</h2>
-<%= form_for @user, :url =>{:action => "create"} do %>
-    <label for = "user_name">Name</label>
+<div class="container">
+<%= form_for @user, :url =>{:action => "create"}, multipart: true do %>
+<div class="mb-3 row">
+    <label for = "user_name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
     <%= text_field 'user', 'name' , class:'form-control' %>
-    <label for = "user_email">E-mail address</label>
+    </div>
+    </div>
+<div class="mb-3 row">
+    <label for = "user_email" class="col-sm-2 col-form-label">E-mail address</label>
+    <div class="col-sm-10">
     <%= text_area 'user', 'email' , class:'form-control' %>
-    <label for = "user_password">Password</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_password" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
     <%= password_field 'user', 'password' , class:'form-control' %>
-    <label for = "user_password">Confirm Password</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "user_password" class="col-sm-2 col-form-label">Confirm Password</label>
+    <div class="col-sm-10">
     <%= password_field 'user', 'password' , class:'form-control' %>
-    <label for = "user_type">Type</label>
-    <%= text_field 'user', 'user_type' , class:'form-control' %>
-    <label for = "user_phone">Phone</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "user_type" class="col-sm-2 col-form-label">Type</label>
+    <div class="col-sm-10">
+    <%= text_field 'user', 'user_type', class:'form-control' %>
+    </select>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "user_phone" class="col-sm-2 col-form-label">Phone</label>
+    <div class="col-sm-10">
     <%= text_field 'user', 'phone' , class:'form-control' %>
-    <label for = "user_dob">Date of Birth</label><br>
-    <%= text_field 'user', 'dob' , class:'form-control' %>
-    <label for = "user_address">Address</label>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_dob" class="col-sm-2 col-form-label">Date of Birth</label>
+    <div class="col-sm-10">
+    <%= text_field 'user', 'dob', class:'form-control', type: "date",
+        data: {
+      controller: "flatpickr",
+      flatpickr_date_format: "Y-m-d",
+      flatpickr_min_date: Time.zone.now
+    } %>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_address" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
     <%= text_area 'user', 'address' , class:'form-control' %>
-    <label for = "user_profile">Profile</label>
-    <%= text_field 'user', 'profile' , class:'form-control' %>
-    <br>
-    <%= submit_tag "Register", class:'btn btn-primary' %>
-    <%= submit_tag "Clear", class:'btn btn-secondary' %>
+    </div>
+    </div>
+    <div class="mb-3 row">
+     <label for = "user_profile" class="col-sm-2 col-form-label">Profile</label>
+    <div class="col-sm-10">
+    <%= text_field 'user', 'profile', class:'form-control'%>
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for = "blank" class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-10">
+    <%= submit_tag "Confirm", class:'btn btn-primary' %>
+    <input type="reset" class="btn btn-secondary" name="Clear" value="Clear">
+    </div>
+    </div>
     <% end -%><br>
+    </div>
     </div>
