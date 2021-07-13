@@ -13,10 +13,10 @@ class PostsController < ApplicationController
   def create
     id = session[:user_id]
     isSavePost = PostsService.createPost(post_params, id)
-    if isSavePost
+    if isSavePost != nil
       redirect_to action: :list
     else
-      render 'new'
+      redirect_to posts_new_path , notice: "Duplicate record are not inserted."
     end
   end
 
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def list
-    @posts = PostsService.listAll.paginate(page: params[:page], per_page:5)
+    @posts = PostsService.listAll.paginate(page: params[:page], per_page:7)
   end
 
   def edit
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
     if isUpdatePost
       redirect_to posts_list_path
     else
-      render 'edit'
+      render :edit, notice: "Duplicate record are not inserted."
     end
   end
 
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   end
   
   def search
-    @posts = PostsService.searchPost(params[:search]).paginate(page: params[:page], per_page:5)
+    @posts = PostsService.searchPost(params[:search]).paginate(page: params[:page], per_page:7)
       render 'list'
   end
 

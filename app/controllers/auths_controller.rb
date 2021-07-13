@@ -27,7 +27,7 @@ class AuthsController < ApplicationController
     def logout
         session[:user_id] = nil
         session[:user_name] = 'Username'
-        redirect_to root_path
+        render :login
     end
 
     def updatePsw
@@ -41,10 +41,10 @@ class AuthsController < ApplicationController
                 @user.save
                 redirect_to :action => 'list', :controller=> 'posts'
             else
-                render 'changePsw', notice: "New password and confirm password must be same."
+                redirect_to auths_changePsw_path , notice: "New password and confirm password must be same."
             end
         else
-            render 'changePsw', notice: "Please enter your old password."
+            redirect_to auths_changePsw_path, notice: "Please enter your old password."
         end
     end
 

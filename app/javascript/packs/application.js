@@ -37,3 +37,11 @@ import 'flatpickr/dist/themes/dark.css'
 // Manually register Flatpickr as a stimulus controller
 application.register('flatpickr', Flatpickr)
 
+import {} from 'jquery-ujs'
+
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require bootstrap
+//= require jquery_ujs
+

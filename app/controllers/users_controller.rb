@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: [:create]
   
   def list
-    @users = UsersService.listAll.paginate(page: params[:page], per_page:5)
+    @users = UsersService.listAll.paginate(page: params[:page], per_page:6)
   end
 
   def confirm
@@ -46,11 +46,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    if params[:name]
-      @users = UsersService.searchUserByName(params[:name]).paginate(page: params[:page], per_page:5)
-    elsif params[:email]
-      @users = UsersService.searchUserByEmail(params[:email]).paginate(page: params[:page], per_page:5)
-    end
+    @users = UsersService.searchUser(params[:name], params[:email], params[:from_date], params[:to_date]).paginate(page: params[:page], per_page:6)
     render 'list'
   end
 

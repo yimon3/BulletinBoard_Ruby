@@ -15,7 +15,7 @@ class UsersService
           def editProfile(id)
             @user = UsersRepository.findUserById(id)
           end
-
+          
           def updateProfile(id, userId, user)
             @user = UsersRepository.updateProfile(id, userId, user)
           end
@@ -24,12 +24,8 @@ class UsersService
             @user = UsersRepository.findUserById(id)
           end
 
-          def searchUserByName(name)
-            UsersRepository.searchUserByName(name)
-          end
-
-          def searchUserByEmail(email)
-            UsersRepository.searchUserByEmail(email)
+          def searchUser(name, email, from_date, to_date)
+            UsersRepository.searchUser(name, email, from_date, to_date)
           end
     end
 end

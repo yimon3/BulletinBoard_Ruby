@@ -60,7 +60,7 @@
   <td><%= user.id %></td>
   <td><%= user.name %></td>
   <td><%= user.email %></td>
-  <td><%= session[:user_name] %></td>
+  <td><%= user.name %></td>
   <td>
   <% if user.user_type == '0' %>
     <%= user.user_type = 'Admin' %>
@@ -74,10 +74,13 @@
   <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
   <td><%= user.updated_at.strftime("%Y/%m/%d") %></td>
   <td>
-   <%= link_to 'Delete', {:action => "delete", :id => user.id}, class:"btn btn-danger" %>
+   <%= link_to 'Delete', {:action => "delete", :id => user.id, data:{confirm: "Are you sure to delete?" }  }, class:"btn btn-danger" %>
   </td>
   </tr>
   <% end %>
 </table>
 <% end %>
+<div style="text-align:right">
+<%= will_paginate @users, renderer: BootstrapPagination::Rails  %>
+</div>
 

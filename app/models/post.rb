@@ -1,11 +1,11 @@
 class Post < ApplicationRecord
+  belongs_to :user
+  
     def self.import(file)
-      csv = CSV.parse(file, :headers => true, encoding: "UTF-8")
-        csv.each do |row|
-          post_hash = row.to_hash
-          post = find_or_create_by!(title: post_hash['title'], description: post_hash['description'], created_at: Time.Now)
-          post.update_attributes(post_hash)
-        end
+      csv = CSV.parse(file, :headers => true)
+       csv.each do |row|
+        Moulding.create!(row.to_hash)
+      end
     end
 
     def self.to_excel(options={})

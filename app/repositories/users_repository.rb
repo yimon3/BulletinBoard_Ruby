@@ -36,14 +36,11 @@ class UsersRepository
             @user.update(user)
           end
           
-          def searchUserByName(name)
-            to_send_back = name_matches(name).uniq
-            return nil unless to_send_back
-                to_send_back
-          end
-
-          def searchUserByEmail(email)
-            to_send_back = email_matches(email).uniq
+          def searchUser(name, email, from_date, to_date)
+            to_send_back = name_matches(name) if name.present?
+            to_send_back = email_matches(email) if email.present?
+            to_send_back = fromDate_matches(from_date) if from_date.present?
+            to_send_back = toDate_matches(to_date) if to_date.present?
             return nil unless to_send_back
                 to_send_back
           end
@@ -56,8 +53,24 @@ class UsersRepository
             matches('email', email)
           end
 
+          def fromDate_matches(from_date)
+            fromDate('created_at', from_date)
+          end
+
+          def toDate_matches(to_date)
+            toDate('created_at', to_date)
+          end
+
           def matches(field_name, param)
             User.where("#{field_name} LIKE ?", "%#{param}")
+          end
+
+          def fromDate(field_name, param)
+            User.where("#{field_name} >= ?", "%#{param}")
+          end
+
+          def toDate(field_name, param)
+            User.where("#{field_name} <= ?", "%#{param}")
           end
           
     end

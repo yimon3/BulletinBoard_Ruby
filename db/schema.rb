@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_11_072425) do
+ActiveRecord::Schema.define(version: 2021_07_12_082334) do
 
   create_table "posts", id: :integer, charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 2021_06_11_072425) do
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["create_user_id"], name: "create_user_id"
+    t.index ["create_user_id"], name: "UserPost1"
     t.index ["title"], name: "title", unique: true
-    t.index ["updated_user_id"], name: "updated_user_id"
+    t.index ["updated_user_id"], name: "UserPost2"
   end
 
   create_table "users", id: :integer, charset: "utf8mb4", force: :cascade do |t|
@@ -46,6 +46,5 @@ ActiveRecord::Schema.define(version: 2021_06_11_072425) do
     t.index ["name"], name: "name", unique: true
   end
 
-  add_foreign_key "posts", "users", column: "create_user_id", name: "posts_ibfk_1"
-  add_foreign_key "posts", "users", column: "updated_user_id", name: "posts_ibfk_2"
+  add_foreign_key "posts", "users", column: "updated_user_id", name: "UserPost2"
 end

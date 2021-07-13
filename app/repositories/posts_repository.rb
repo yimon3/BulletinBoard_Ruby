@@ -16,7 +16,11 @@ class PostsRepository
             @post = Post.new(post)
             @post.create_user_id = id
             @post.updated_user_id = id
+            if title_matches(@post.title) && description_matches(@post.description)
+                nil
+            else
             isSavePost = @post.save
+            end
         end
 
         def confirmPost(post)

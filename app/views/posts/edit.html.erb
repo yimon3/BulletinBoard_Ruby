@@ -1,6 +1,6 @@
 <div class="container">
 <h3>Post edit</h3><br>
-<%= form_for @post, :url =>{:action => "update", :id =>@post.id} do %>
+<%= form_for @post, :url =>{:action => "update", :id => @post.id} do %>
 <div class="form-group">
 <label for = "post_title">Title:</label><br>
 <%= text_field 'post', 'title' , class:'form-control' %>
@@ -14,7 +14,7 @@
 <label for = "post_status">Status:</label>
 <%= check_box 'post', 'status'  %>
 </div><br>
-<%= submit_tag "Edit", class:'btn btn-primary' %>
+ <%= submit_tag 'Edit', class:"btn btn-info" %>
 <input type="reset" class="btn btn-secondary" name="Clear" value="Clear">
 <% end -%><br>
 <%= link_to 'Back', {:action => 'list'} %>
