@@ -1,7 +1,10 @@
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-danger">
-      <%= flash[:notice] %>
-   </div>
+<% if @user.errors.any? %>
+<h2>The following errors prevented user from getting created.</h2>
+<ul>
+<% @user.errors.full_messages.each do |msg| %>
+<li><%= msg %>
+<% end %>
+</ul>
 <% end %>
 <h2>Register Confirm</h2>
 <div class="container">

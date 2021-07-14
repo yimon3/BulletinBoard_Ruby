@@ -26,13 +26,9 @@ Rails.application.routes.draw do
   post 'auths/authenticate'
   get 'auths/changePsw'
   post 'auths/updatePsw'
-
-  get '/update' => 'responses#update'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users
-  resources :posts do
-    collection { post :import }
-  end
+  resources :posts
 
 end

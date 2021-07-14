@@ -1,7 +1,9 @@
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-danger">
-      <%= flash[:notice] %>
-   </div>
+<% if @post.errors.any? %>
+<ul>
+<% @post.errors.full_messages.each do |msg| %>
+<li><%= msg %>
+<% end %>
+</ul>
 <% end %>
 <div class="container">
 <h3>Create Post</h3><br>

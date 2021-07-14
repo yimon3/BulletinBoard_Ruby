@@ -1,7 +1,13 @@
-
+<% if @post.errors.any? %>
+<ul>
+<% @post.errors.full_messages.each do |msg| %>
+<li><%= msg %>
+<% end %>
+</ul>
+<% end %>
 <div class="container">
 <h3>Confirm Post</h3><br>
-<%= form_for @post, :url =>{:action => "create"} do %>
+<%= form_for @post, :url =>{:action => "create"}  do %>
 <div class="form-group">
 <label for = "post_title">Title:</label><br>
 <%= text_field 'post', 'title' , class:'form-control' %>
@@ -11,6 +17,8 @@
 <%= text_area 'post', 'description' , class:'form-control' %>
 </div>
 <br>
+<%= hidden_field 'post', 'create_user_id'  %>
+<%= hidden_field 'post', 'updated_user_id'  %>
 <%= submit_tag "Confirm", class:'btn btn-primary' %>
 <input type="reset" class="btn btn-secondary" name="Clear" value="Clear">
 <% end -%><br>

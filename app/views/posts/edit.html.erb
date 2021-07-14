@@ -1,3 +1,10 @@
+<% if @post.errors.any? %>
+<ul>
+<% @post.errors.full_messages.each do |msg| %>
+<li><%= msg %>
+<% end %>
+</ul>
+<% end %>
 <div class="container">
 <h3>Post edit</h3><br>
 <%= form_for @post, :url =>{:action => "update", :id => @post.id} do %>
@@ -14,6 +21,8 @@
 <label for = "post_status">Status:</label>
 <%= check_box 'post', 'status'  %>
 </div><br>
+<%= hidden_field 'post', 'create_user_id'  %>
+<%= hidden_field 'post', 'updated_user_id'  %>
  <%= submit_tag 'Edit', class:"btn btn-info" %>
 <input type="reset" class="btn btn-secondary" name="Clear" value="Clear">
 <% end -%><br>

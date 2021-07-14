@@ -13,10 +13,10 @@ class PostsController < ApplicationController
   def create
     id = session[:user_id]
     isSavePost = PostsService.createPost(post_params, id)
-    if isSavePost != nil
-      redirect_to action: :list
+    if isSavePost == nil
+      redirect_to posts_new_path, notice: "Title cannot be duplicated."
     else
-      redirect_to posts_new_path , notice: "Duplicate record are not inserted."
+      redirect_to action: :list
     end
   end
 
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
     if isUpdatePost
       redirect_to posts_list_path
     else
-      render :edit, notice: "Duplicate record are not inserted."
+      redirect_to posts_edit_path
     end
   end
 
@@ -74,7 +74,7 @@ end
   private
 
   def post_params
-    params.require(:post).permit( :title, :description, :status)
+    params.require(:post).permit( :title, :description, :status, :create_user_id, :updated_user_id)
   end
 
 end

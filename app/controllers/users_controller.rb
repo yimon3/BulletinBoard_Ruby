@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       if isSaveUser
         redirect_to action: :list
       else
-        render 'new'
+        redirect_to users_new_path
       end
   end
 

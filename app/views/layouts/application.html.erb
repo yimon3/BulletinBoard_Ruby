@@ -18,7 +18,11 @@
   <body>
   <%= render 'home/header' %>
   <div class="container-fluid">
-  
+  <% if !flash[:notice].blank? %>
+   <div class = "alert alert-danger">
+      <%= flash[:notice] %>
+   </div>
+  <% end %>
   <%= yield %>
     
   </div>  
